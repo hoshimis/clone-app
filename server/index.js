@@ -19,6 +19,16 @@ app.use(express.json({ limit: '50mb' }))
 app.use('/api/v1/post', postRoutes)
 app.use('/api/v1/dalle', dalleRoutes)
 
+// CORS
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  )
+  next()
+})
+
 app.get('/', async (req, res) => {
   res.send('Hello world!')
 })
